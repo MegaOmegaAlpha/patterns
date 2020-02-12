@@ -2,6 +2,7 @@ package lab1.factory;
 
 import lab1.factory.interfaces.Vehicle;
 import lab1.factory.interfaces.VehicleFactory;
+import lab1.lab2.decorator.SynchronizedVehicle;
 
 import java.util.Arrays;
 
@@ -32,6 +33,10 @@ public class Vehicles {
 
     public static Vehicle createInstance(String mark, int modelCapacity) {
         return factory.createInstance(mark, modelCapacity);
+    }
+
+    public static Vehicle synchronizedVehicle(Vehicle vehicle) {
+        return new SynchronizedVehicle(vehicle);
     }
 
 }
