@@ -5,9 +5,9 @@ import lab1.factory.exceptions.ModelPriceOutOfBoundsException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
 
-public class Motorcycle implements Vehicle {
+public class Motorcycle implements Vehicle, Cloneable {
 
-    private class Model {
+    private class Model implements Cloneable{
 
         String name;
         double price;
@@ -21,6 +21,12 @@ public class Motorcycle implements Vehicle {
 
         public Model() {
         }
+
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+
     }
 
     private Model head = new Model();
@@ -35,7 +41,7 @@ public class Motorcycle implements Vehicle {
     public Motorcycle(String mark, int modelCapacity) throws DuplicateModelNameException {
         this.mark = mark;
         while (size < modelCapacity) {
-            addModel("default name", 0);
+            addModel("default name " + size, size + 1);
         }
     }
 
@@ -50,7 +56,7 @@ public class Motorcycle implements Vehicle {
     public void setModelName(int index, String name) throws DuplicateModelNameException {
         if (0 <= index && index < size) {
             Model model = getModelByName(name);
-            if (model != null) {
+            if (model == null) {
                 model = getModelByIndex(index);
                 model.name = name;
             } else {
@@ -128,7 +134,11 @@ public class Motorcycle implements Vehicle {
         if (toDelete != null) {
             Model nodeBefore = toDelete.prev;
             Model nodeAfter = toDelete.next;
-            //todo!!!
+            nodeBefore.next = nodeAfter;
+            nodeAfter.prev = nodeBefore;
+            toDelete = null;
+            size--;
+            //todo:complete linking
         } else {
             throw new NoSuchModelNameException();
         }
@@ -137,6 +147,41 @@ public class Motorcycle implements Vehicle {
     @Override
     public int getModelsSize() {
         return size;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Motorcycle clone = (Motorcycle) super.clone();
+        clone.head = (Model) this.head.clone();
+        Model clonedModel = clone.head;
+        Model toClone = this.head.next;
+        Model currentModelToClone = clone.head;
+        while (toClone != this.head) {
+            currentModelToClone = (Model) toClone.clone();
+            clonedModel.next = currentModelToClone;
+            currentModelToClone.prev = clonedModel;
+            clonedModel = clonedModel.next;
+            toClone = toClone.next;
+        }
+        currentModelToClone.next = clone.head;
+        clone.head.prev = currentModelToClone;
+
+        return clone;
+
+        /*Motorcycle clone = null;
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutput objectOutput = new ObjectOutputStream(byteArrayOutputStream);
+             ObjectInput objectInput = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()))) {
+
+            objectOutput.writeObject(this);
+            clone = (Motorcycle) objectInput.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return clone;
+
+         */
     }
 
     private Model getModelByName(String name) {

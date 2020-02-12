@@ -7,7 +7,7 @@ import lab1.factory.interfaces.Vehicle;
 
 import java.util.Arrays;
 
-public class Car implements Vehicle {
+public class Car implements Vehicle, Cloneable {
 
     private String mark;
     private Model[] models;
@@ -112,7 +112,17 @@ public class Car implements Vehicle {
         return models.length;
     }
 
-    private class Model {
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Car clone = (Car) super.clone();
+        clone.models = this.models.clone();
+        for (int i = 0; i < models.length; i++) {
+            clone.models[i] = (Model) this.models[i].clone();
+        }
+        return clone;
+    }
+
+    private class Model implements Cloneable {
 
         String name;
         double price;
@@ -123,6 +133,11 @@ public class Car implements Vehicle {
         }
 
         public Model() {
+        }
+
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            return super.clone();
         }
     }
 }
