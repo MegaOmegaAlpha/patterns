@@ -1,15 +1,14 @@
-package main;
+package lab1.main;
 
 import lab1.factory.Car;
+import lab1.factory.MotoFactory;
 import lab1.factory.Motorcycle;
 import lab1.factory.Vehicles;
 import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
-import lab1.singleton.SingletonImpl;
 
 import java.util.Arrays;
-import java.util.Properties;
 
 public class Main {
 
@@ -22,7 +21,7 @@ public class Main {
 
         /*
         Vehicle car = new Car("big car", 5);
-        car.setModelName(2, "wetweg");
+        car.setModelName("default model 1", "wetweg");
         car.setPriceByName("wetweg", 124.125);
         car.addModel("w34", 1000_000);
         car.deleteModel("default model 0");
@@ -32,35 +31,34 @@ public class Main {
         Arrays.stream(car.getModelPrices()).forEach(System.out::println);
         System.out.println();
         System.out.println(car.getPriceByName("wetweg"));
-         */
+        */
 
         /*
         Vehicle motorcycle = new Motorcycle("honda", 5);
-        motorcycle.setModelName(1, "best model");
+        motorcycle.setModelName("default model 1", "best model");
         motorcycle.setPriceByName("best model", 124.51);
         motorcycle.addModel("new model", 45.5);
-        motorcycle.deleteModel("default name 2");
+        motorcycle.deleteModel("default model 2");
 
         Arrays.stream(motorcycle.getModelNames()).forEach(System.out::println);
         System.out.println();
         Arrays.stream(motorcycle.getModelPrices()).forEach(System.out::println);
         System.out.println();
         System.out.println(motorcycle.getModelsSize());
-
-         */
+        */
 
         /*
         Vehicle vehicle = Vehicles.createInstance("lovely car", 5);
-        Vehicles.printModels(vehicle);
-        System.out.println();
-        Vehicles.printPrices(vehicle);
-
-         */
+        System.out.println(vehicle.getClass().getName());
+        Vehicles.setFactory(new MotoFactory());
+        vehicle = Vehicles.createInstance("lovely moto", 5);
+        System.out.println(vehicle.getClass().getName());
+        */
 
         /*
         Car car = new Car("mark1", 5);
         Vehicle clone = (Vehicle) car.clone();
-        car.setModelName(2, "big model");
+        car.setModelName("default model 2", "big model");
         car.setPriceByName("big model", 123.123);
 
 
@@ -69,14 +67,16 @@ public class Main {
         System.out.println();
         Vehicles.printModels(clone);
         Vehicles.printPrices(clone);
+        */
 
-         */
 
         Motorcycle moto = new Motorcycle("moto mark", 5);
         Motorcycle clone = (Motorcycle) moto.clone();
-        moto.setModelName(2, "other name");
-        moto.deleteModel("default name 4");
-        clone.setModelName(0, "some name");
+
+        moto.setModelName("default model 3", "other name");
+        moto.deleteModel("default model 4");
+
+        clone.setModelName("default model 0", "some name");
         clone.addModel("new", 123.124);
         clone.deleteModel("some name");
 

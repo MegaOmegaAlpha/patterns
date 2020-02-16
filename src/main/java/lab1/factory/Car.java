@@ -28,14 +28,26 @@ public class Car implements Vehicle, Cloneable {
         this.mark = mark;
     }
 
-    public void setModelName(int index, String name) throws DuplicateModelNameException {
-        if (0 <= index && index < models.length) {
+    public void setModelName(String oldName, String newName) throws DuplicateModelNameException, NoSuchModelNameException {
+        int index = getModelIndexByName(newName);
+        if (index == -1) {
+            index = getModelIndexByName(oldName);
+            if (index != -1) {
+                models[index].name = newName;
+            } else {
+                throw new NoSuchModelNameException(oldName);
+            }
+        } else {
+            throw new DuplicateModelNameException(newName);
+        }
+        /*int index = getModelIndexByName(oldName);
+        if (index != -1) {
             if (getModelIndexByName(name) == -1) {
                 models[index].name = name;
             } else {
                 throw new DuplicateModelNameException();
             }
-        }
+        }*/
     }
 
     public String[] getModelNames() {
@@ -51,7 +63,7 @@ public class Car implements Vehicle, Cloneable {
         if (modelIndex != -1) {
             return models[modelIndex].price;
         } else {
-            throw new NoSuchModelNameException();
+            throw new NoSuchModelNameException(name);
         }
     }
 
@@ -64,7 +76,7 @@ public class Car implements Vehicle, Cloneable {
                 throw new ModelPriceOutOfBoundsException();
             }
         } else {
-            throw new NoSuchModelNameException();
+            throw new NoSuchModelNameException(name);
         }
     }
 
@@ -85,7 +97,7 @@ public class Car implements Vehicle, Cloneable {
                 throw new ModelPriceOutOfBoundsException();
             }
         } else {
-            throw new DuplicateModelNameException();
+            throw new DuplicateModelNameException(name);
         }
     }
 
@@ -95,7 +107,7 @@ public class Car implements Vehicle, Cloneable {
             System.arraycopy(models, modelIndex + 1, models, modelIndex, models.length - modelIndex - 1);
             models = Arrays.copyOf(models, models.length - 1);
         } else {
-            throw new NoSuchModelNameException();
+            throw new NoSuchModelNameException(name);
         }
     }
 

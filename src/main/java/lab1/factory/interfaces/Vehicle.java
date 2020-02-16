@@ -7,7 +7,7 @@ public interface Vehicle {
 
     String getMark();
     void setMark(String mark);
-    void setModelName(int index, String name) throws DuplicateModelNameException;
+    void setModelName(String oldName, String newName) throws DuplicateModelNameException, NoSuchModelNameException;
     String[] getModelNames();
     double getPriceByName(String name) throws NoSuchModelNameException;
     void setPriceByName(String name, double price) throws NoSuchModelNameException;

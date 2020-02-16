@@ -1,8 +1,9 @@
 package lab1.factory;
 
+import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.interfaces.Vehicle;
 import lab1.factory.interfaces.VehicleFactory;
-import lab1.lab2.decorator.SynchronizedVehicle;
+import lab2.decorator.SynchronizedVehicle;
 
 import java.util.Arrays;
 
@@ -31,7 +32,7 @@ public class Vehicles {
         factory = vehicleFactory;
     }
 
-    public static Vehicle createInstance(String mark, int modelCapacity) {
+    public static Vehicle createInstance(String mark, int modelCapacity) throws DuplicateModelNameException {
         return factory.createInstance(mark, modelCapacity);
     }
 

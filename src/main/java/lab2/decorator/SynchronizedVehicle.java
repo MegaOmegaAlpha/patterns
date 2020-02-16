@@ -1,4 +1,4 @@
-package lab1.lab2.decorator;
+package lab2.decorator;
 
 import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.NoSuchModelNameException;
@@ -23,8 +23,8 @@ public class SynchronizedVehicle implements Vehicle {
     }
 
     @Override
-    public synchronized void setModelName(int index, String name) throws DuplicateModelNameException {
-        vehicle.setModelName(index, name);
+    public synchronized void setModelName(String oldName, String newName) throws DuplicateModelNameException, NoSuchModelNameException {
+        vehicle.setModelName(oldName, newName);
     }
 
     @Override

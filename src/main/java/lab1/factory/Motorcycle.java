@@ -41,7 +41,7 @@ public class Motorcycle implements Vehicle, Cloneable {
     public Motorcycle(String mark, int modelCapacity) throws DuplicateModelNameException {
         this.mark = mark;
         while (size < modelCapacity) {
-            addModel("default name " + size, size + 1);
+            addModel("default model " + size, size + 1);
         }
     }
 
@@ -53,7 +53,19 @@ public class Motorcycle implements Vehicle, Cloneable {
         this.mark = mark;
     }
 
-    public void setModelName(int index, String name) throws DuplicateModelNameException {
+    public void setModelName(String oldName, String newName) throws DuplicateModelNameException, NoSuchModelNameException {
+        Model model = getModelByName(newName);
+        if (model == null) {
+            model = getModelByName(oldName);
+            if (model != null) {
+                model.name = newName;
+            } else {
+                throw new NoSuchModelNameException(oldName);
+            }
+        } else {
+            throw new DuplicateModelNameException(newName);
+        }
+        /*
         if (0 <= index && index < size) {
             Model model = getModelByName(name);
             if (model == null) {
@@ -63,6 +75,8 @@ public class Motorcycle implements Vehicle, Cloneable {
                 throw new DuplicateModelNameException();
             }
         }
+
+         */
     }
 
     @Override
@@ -81,7 +95,7 @@ public class Motorcycle implements Vehicle, Cloneable {
         if (model != null) {
             return model.price;
         } else {
-            throw new NoSuchModelNameException();
+            throw new NoSuchModelNameException(name);
         }
     }
 
@@ -92,7 +106,7 @@ public class Motorcycle implements Vehicle, Cloneable {
             if (model != null) {
                 model.price = price;
             } else {
-                throw new NoSuchModelNameException();
+                throw new NoSuchModelNameException(name);
             }
         } else {
             throw new ModelPriceOutOfBoundsException();
@@ -121,7 +135,7 @@ public class Motorcycle implements Vehicle, Cloneable {
                 head.prev = newModel;
                 size++;
             } else {
-                throw new DuplicateModelNameException();
+                throw new DuplicateModelNameException(name);
             }
         } else {
             throw new ModelPriceOutOfBoundsException();
@@ -140,7 +154,7 @@ public class Motorcycle implements Vehicle, Cloneable {
             size--;
             //todo:complete linking
         } else {
-            throw new NoSuchModelNameException();
+            throw new NoSuchModelNameException(name);
         }
     }
 
