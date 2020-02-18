@@ -38,10 +38,14 @@ public class Motorcycle implements Vehicle, Cloneable {
         head.next = head;
     }
 
-    public Motorcycle(String mark, int modelCapacity) throws DuplicateModelNameException {
+    public Motorcycle(String mark, int modelCapacity) {
         this.mark = mark;
         while (size < modelCapacity) {
-            addModel("default model " + size, size + 1);
+            try {
+                addModel("default model " + size, size + 1);
+            } catch (DuplicateModelNameException e) {
+                e.printStackTrace();
+            }
         }
     }
 

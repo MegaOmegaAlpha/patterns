@@ -16,7 +16,7 @@ public class Car implements Vehicle, Cloneable {
         this.mark = mark;
         models = new Model[modelCapacity];
         for (int i = 0; i < models.length; i++) {
-            models[i] = new Model("default model " + i, 0);
+            models[i] = new Model("default model " + i, i + 1);
         }
     }
 
