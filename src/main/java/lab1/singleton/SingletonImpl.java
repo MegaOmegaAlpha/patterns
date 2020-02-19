@@ -6,7 +6,7 @@ import java.util.Properties;
 public class SingletonImpl {
 
     private static Properties properties;
-    private static SingletonImpl singleton = new SingletonImpl();
+    private static SingletonImpl singleton;
 
     private SingletonImpl() {
         properties = new Properties();
@@ -19,7 +19,10 @@ public class SingletonImpl {
         }
     }
 
-    public static Properties getProperties() {
+    public static synchronized Properties getProperties() {
+        if (singleton == null) {
+            singleton = new SingletonImpl();
+        }
         return properties;
     }
 
