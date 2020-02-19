@@ -32,7 +32,7 @@ public class Vehicles {
         factory = vehicleFactory;
     }
 
-    public static Vehicle createInstance(String mark, int modelCapacity) throws DuplicateModelNameException {
+    public static Vehicle createInstance(String mark, int modelCapacity) {
         return factory.createInstance(mark, modelCapacity);
     }
 

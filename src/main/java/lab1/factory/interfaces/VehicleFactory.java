@@ -4,6 +4,6 @@ import lab1.factory.exceptions.DuplicateModelNameException;
 
 public interface VehicleFactory {
 
-    Vehicle createInstance(String mark, int modelCapacity) throws DuplicateModelNameException;
+    Vehicle createInstance(String mark, int modelCapacity);
 
 }
