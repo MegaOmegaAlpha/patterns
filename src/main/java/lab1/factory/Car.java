@@ -8,8 +8,9 @@ import lab3.command.Command;
 
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class Car implements Vehicle, Cloneable {
+public class Car implements Vehicle, Cloneable, Iterable<Car.Model> {
 
     private String mark;
     private Model[] models;
@@ -145,7 +146,27 @@ public class Car implements Vehicle, Cloneable {
         this.command = command;
     }
 
-    private class Model implements Cloneable {
+    @Override
+    public Iterator<Model> iterator() {
+
+        return new Iterator<Model>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex != getModelsSize();
+            }
+
+            @Override
+            public Model next() {
+                return models[currentIndex++];
+            }
+
+        };
+    }
+
+    static class Model implements Cloneable {
 
         String name;
         double price;
@@ -162,5 +183,11 @@ public class Car implements Vehicle, Cloneable {
         protected Object clone() throws CloneNotSupportedException {
             return super.clone();
         }
+
+        @Override
+        public String toString() {
+            return name + ": " + price + ";";
+        }
+
     }
 }

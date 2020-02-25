@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Iterator;
 
 public class Main {
 
@@ -22,11 +23,14 @@ public class Main {
         rowPrinter.print(vehicle);
 
          */
-
+        /*
         Car car = new Car("rrr", 5);
         Writer writer = new FileWriter(new File("file.txt"));
         car.setCommand(new ColumnWriter());
         car.print(writer);
+
+         */
+
     }
 
 }
