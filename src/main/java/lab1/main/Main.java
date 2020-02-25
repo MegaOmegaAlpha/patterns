@@ -7,8 +7,10 @@ import lab1.factory.Vehicles;
 import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
+import lab1.singleton.SingletonImpl;
 
 import java.util.Arrays;
+import java.util.Properties;
 
 public class Main {
 
@@ -47,7 +49,7 @@ public class Main {
         System.out.println(motorcycle.getModelsSize());
         */
 
-        /*
+/*
         Vehicle vehicle = Vehicles.createInstance("lovely car", 5);
         System.out.println(vehicle.getClass().getName());
         Vehicles.setFactory(new MotoFactory());
@@ -55,7 +57,7 @@ public class Main {
         System.out.println(vehicle.getClass().getName());
         */
 
-        /*
+/*
         Car car = new Car("mark1", 5);
         Vehicle clone = (Vehicle) car.clone();
         car.setModelName("default model 2", "big model");
@@ -77,8 +79,8 @@ public class Main {
         moto.deleteModel("default model 4");
 
         clone.setModelName("default model 0", "some name");
-        clone.addModel("new", 123.124);
-        clone.deleteModel("some name");
+       // clone.addModel("new", 123.124);
+      //  clone.deleteModel("some name");
 
         Vehicles.printModels(moto);
         Vehicles.printPrices(moto);
