@@ -4,13 +4,16 @@ import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.ModelPriceOutOfBoundsException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
+import lab3.command.Command;
 
+import java.io.Writer;
 import java.util.Arrays;
 
 public class Car implements Vehicle, Cloneable {
 
     private String mark;
     private Model[] models;
+    private Command command;
 
     public Car(String mark, int modelCapacity) {
         this.mark = mark;
@@ -132,6 +135,14 @@ public class Car implements Vehicle, Cloneable {
             clone.models[i] = (Model) this.models[i].clone();
         }
         return clone;
+    }
+
+    public void print(Writer writer) {
+        command.performCommand(this, writer);
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
     }
 
     private class Model implements Cloneable {
