@@ -6,11 +6,11 @@ import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
 import lab3.command.Command;
 
-import java.io.Writer;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class Car implements Vehicle, Cloneable, Iterable<Car.Model> {
+public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializable {
 
     private String mark;
     private Model[] models;
@@ -166,7 +166,7 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model> {
         };
     }
 
-    static class Model implements Cloneable {
+    static class Model implements Cloneable, Serializable {
 
         String name;
         double price;
@@ -190,4 +190,49 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model> {
         }
 
     }
+
+    public Car readMemento(Memento memento) {
+        return memento.getAuto();
+    }
+
+    public Memento createMemento() {
+        Memento memento = new Memento();
+        memento.setAuto(this);
+        return memento;
+    }
+
+    public static final class Memento {
+
+        private ByteArrayOutputStream byteArrayOutputStream;
+        private ByteArrayInputStream byteArrayInputStream;
+
+        public Memento() {
+            this.byteArrayOutputStream = new ByteArrayOutputStream();
+        }
+
+        public void setAuto(Car car) {
+            try {
+                ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
+                outputStream.writeObject(car);
+                outputStream.flush();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public Car getAuto() {
+            Car car = null;
+            try {
+                ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+                car = (Car) inputStream.readObject();
+                inputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return car;
+        }
+
+    }
+
 }
