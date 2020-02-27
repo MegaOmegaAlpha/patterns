@@ -1,8 +1,11 @@
 package lab3.main;
 
 import lab1.factory.Car;
+import lab1.factory.Motorcycle;
 import lab1.factory.Vehicles;
 import lab1.factory.exceptions.DuplicateModelNameException;
+import lab3.visitor.PrintVisitor;
+import lab3.visitor.Visitor;
 
 public class Main {
 
@@ -27,6 +30,7 @@ public class Main {
 
          */
 
+        /*
         Car carOrig = new Car("zil", 5);
 
         Car.Memento memento = carOrig.createMemento();
@@ -38,6 +42,14 @@ public class Main {
         carOrig.readMemento(memento);
         Vehicles.printModels(carOrig);
 
+         */
+
+        Car car = new Car("qwe", 5);
+        Motorcycle motorcycle = new Motorcycle("asd", 4);
+        Visitor visitor = new PrintVisitor();
+        car.accept(visitor);
+        System.out.println();
+        motorcycle.accept(visitor);
     }
 
 }

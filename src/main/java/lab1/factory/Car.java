@@ -5,6 +5,7 @@ import lab1.factory.exceptions.ModelPriceOutOfBoundsException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
 import lab3.command.Command;
+import lab3.visitor.Visitor;
 
 import java.io.*;
 import java.util.Arrays;
@@ -126,6 +127,11 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
 
     public int getModelsSize() {
         return models.length;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

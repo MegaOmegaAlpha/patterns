@@ -1,8 +1,11 @@
 package lab2.decorator;
 
+import lab1.factory.Car;
+import lab1.factory.Motorcycle;
 import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
+import lab3.visitor.Visitor;
 
 public class SynchronizedVehicle implements Vehicle {
 
@@ -60,6 +63,15 @@ public class SynchronizedVehicle implements Vehicle {
     @Override
     public synchronized int getModelsSize() {
         return vehicle.getModelsSize();
+    }
+
+    @Override
+    public synchronized void accept(Visitor visitor) {
+        if (vehicle instanceof Car) {
+            visitor.visit((Car) vehicle);
+        } else {
+            visitor.visit((Motorcycle) vehicle);
+        }
     }
 
 }

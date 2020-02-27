@@ -4,6 +4,7 @@ import lab1.factory.exceptions.DuplicateModelNameException;
 import lab1.factory.exceptions.ModelPriceOutOfBoundsException;
 import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
+import lab3.visitor.Visitor;
 
 public class Motorcycle implements Vehicle, Cloneable {
 
@@ -165,6 +166,11 @@ public class Motorcycle implements Vehicle, Cloneable {
     @Override
     public int getModelsSize() {
         return size;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override
