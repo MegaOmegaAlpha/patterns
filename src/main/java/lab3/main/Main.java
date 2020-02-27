@@ -35,8 +35,8 @@ public class Main {
         Vehicles.printModels(carOrig);
         System.out.println();
 
-        Car carMem = carOrig.readMemento(memento);
-        Vehicles.printModels(carMem);
+        carOrig.readMemento(memento);
+        Vehicles.printModels(carOrig);
 
     }
 

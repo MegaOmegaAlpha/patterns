@@ -20,7 +20,7 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
         this.mark = mark;
         models = new Model[modelCapacity];
         for (int i = 0; i < models.length; i++) {
-            models[i] = new Model("default model " + i, i + 1);
+            models[i] = new Model("Car model " + i, i + 1);
         }
     }
 
@@ -192,7 +192,10 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
     }
 
     public void readMemento(Memento memento) {
-        this = memento.getAuto();
+        Car memCar = memento.getAuto();
+        this.mark = memCar.mark;
+        this.models = memCar.models;
+        this.command = memCar.command;
     }
 
     public Memento createMemento() {

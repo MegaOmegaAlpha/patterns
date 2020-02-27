@@ -42,7 +42,7 @@ public class Motorcycle implements Vehicle, Cloneable {
         this.mark = mark;
         while (size < modelCapacity) {
             try {
-                addModel("default model " + size, size + 1);
+                addModel("Car model " + size, size + 1);
             } catch (DuplicateModelNameException e) {
                 e.printStackTrace();
             }
