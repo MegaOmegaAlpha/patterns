@@ -191,8 +191,8 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
 
     }
 
-    public Car readMemento(Memento memento) {
-        return memento.getAuto();
+    public void readMemento(Memento memento) {
+        this = memento.getAuto();
     }
 
     public Memento createMemento() {
