@@ -6,8 +6,9 @@ public class CarIteratorTest {
 
     public static void main(String[] args) {
         Car car = new Car("new", 5);
-        for (Car.Model model : car) {
-            System.out.println(model);
+        Iterator<Car.Model> iterator = car.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
     }
 

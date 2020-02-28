@@ -67,8 +67,7 @@ public class SaxAnalyzer implements XmlAnalyzerStrategy {
             DOMSource domSource = new DOMSource(documentOut);
             FileOutputStream fileOutputStream = new FileOutputStream(output);
             StreamResult streamResult = new StreamResult(fileOutputStream);
-            Transformer transformer = null;
-            transformer = TransformerFactory.newInstance().newTransformer();
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(domSource, streamResult);
         } catch (TransformerException | FileNotFoundException e) {
             e.printStackTrace();
@@ -104,7 +103,7 @@ public class SaxAnalyzer implements XmlAnalyzerStrategy {
         public void characters(char[] ch, int start, int length) throws SAXException {
             if (lastElementName.equals("average")) {
                 String average = new String(ch, start, length);
-                docAverage = Integer.parseInt(average);
+                docAverage = Double.parseDouble(average);
                 lastElementName = "";
             }
         }
