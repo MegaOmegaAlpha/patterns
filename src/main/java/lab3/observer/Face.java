@@ -82,7 +82,7 @@ class FaceHolder extends JPanel {
                 } else if (smile.contains(mouseEvent.getX(), mouseEvent.getY())) {
                     isSmileOff = !isSmileOff;
                 }
-                updateUI();
+                repaint();
             }
 
             @Override
