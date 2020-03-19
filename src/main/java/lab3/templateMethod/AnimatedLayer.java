@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class AnimatedLayer extends JPanel {
 
-    private static final int SQUARE_SIZE = 40;
-    private static final int SPEED_OF_SQUARE = 6;
+    private static final int FIGURE_SIZE = 40;
+    private static final int FIGURE_SPEED = 6;
 
-    private Map<Thread, AbstractFigure> rectangles = new HashMap<>();
+    private Map<Thread, AbstractFigure> map = new HashMap<>();
 
     public AnimatedLayer() {
 
@@ -23,17 +23,15 @@ public class AnimatedLayer extends JPanel {
     public synchronized void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
-        for (AbstractFigure cube : rectangles.values()) {
-            graphics2D.fill(cube);
-            //g.fillRect((int) cube.getX(), (int) cube.getY(), SQUARE_SIZE, SQUARE_SIZE);
+        for (AbstractFigure figure : map.values()) {
+            graphics2D.fill(figure);
         }
-        //g.fillRect(xPosit, yPosit, SQUARE_SIZE, SQUARE_SIZE);
     }
 
     public void run(String figureName) {
         AbstractFigure movingFigure = createFigureByName(figureName);
         new Thread(() -> {
-            rectangles.put(Thread.currentThread(), movingFigure);
+            map.put(Thread.currentThread(), movingFigure);
             while (true) {
                 redraw(Thread.currentThread());
                 try {
@@ -49,16 +47,16 @@ public class AnimatedLayer extends JPanel {
     private AbstractFigure createFigureByName(String name) {
         switch (name) {
             case "RECTANGLE":
-                return new MovingCube(getWidth(), getHeight(), SQUARE_SIZE, getWidth(), getHeight(), SPEED_OF_SQUARE);
+                return new MovingCube(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
             case "CIRCLE":
-                return new MovingCircle(getWidth(), getHeight(), SQUARE_SIZE, getWidth(), getHeight(), SPEED_OF_SQUARE);
+                return new MovingCircle(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
             default:
-                return new MovingCube(getWidth(), getHeight(), SQUARE_SIZE, getWidth(), getHeight(), SPEED_OF_SQUARE);
+                return new MovingCube(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
         }
     }
 
     private void redraw(Thread thread) {
-        rectangles.get(thread).calculate();
+        map.get(thread).move();
     }
 
 }
