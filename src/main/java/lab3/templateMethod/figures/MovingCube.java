@@ -65,36 +65,6 @@ public class MovingCube extends AbstractFigure {
     }
 
     @Override
-    public double getX() {
-        return rectangle.x;
-    }
-
-    @Override
-    public double getY() {
-        return rectangle.y;
-    }
-
-    @Override
-    public double getWidth() {
-        return rectangle.width;
-    }
-
-    @Override
-    public double getHeight() {
-        return rectangle.height;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public void setFrame(double v, double v1, double v2, double v3) {
-
-    }
-
-    @Override
     public boolean contains(Point2D point2D) {
         return false;
     }

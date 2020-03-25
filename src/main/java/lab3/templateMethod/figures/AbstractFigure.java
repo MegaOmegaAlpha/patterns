@@ -1,11 +1,10 @@
 package lab3.templateMethod.figures;
 
 import java.awt.*;
-import java.awt.geom.RectangularShape;
 
-public abstract class AbstractFigure extends RectangularShape implements Shape {
+public abstract class AbstractFigure implements Shape {
 
-    public void calculate() {
+    public void move() {
         calculateX();
         calculateY();
     }

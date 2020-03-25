@@ -1,8 +1,6 @@
 package lab3.templateMethod;
 
-import lab3.templateMethod.figures.AbstractFigure;
-import lab3.templateMethod.figures.MovingCircle;
-import lab3.templateMethod.figures.MovingCube;
+import lab3.templateMethod.figures.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,6 +48,8 @@ public class AnimatedLayer extends JPanel {
                 return new MovingCube(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
             case "CIRCLE":
                 return new MovingCircle(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
+            case "STAR":
+                return new MovingStar(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
             default:
                 return new MovingCube(getWidth(), getHeight(), FIGURE_SIZE, getWidth(), getHeight(), FIGURE_SPEED);
         }

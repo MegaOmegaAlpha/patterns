@@ -117,6 +117,7 @@ class FaceHolder extends JPanel {
         graphics2D.fill(face);
 
         graphics2D.setColor(Color.BLACK);
+
         if (isLeftEyeClosed) {
             graphics2D.draw(leftEye);
         } else {
@@ -127,7 +128,6 @@ class FaceHolder extends JPanel {
         } else {
             graphics2D.fill(rightEye);
         }
-
         if (!isSmileOff) {
             smile.setArc(250, 380, 120, 10, 180, 180, Arc2D.OPEN);
         } else {

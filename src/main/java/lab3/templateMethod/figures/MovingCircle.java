@@ -1,9 +1,7 @@
 package lab3.templateMethod.figures;
 
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Rectangle2D;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class MovingCircle extends AbstractFigure {
 
@@ -48,33 +46,8 @@ public class MovingCircle extends AbstractFigure {
     }
 
     @Override
-    public double getX() {
-        return 0;
-    }
-
-    @Override
-    public double getY() {
-        return 0;
-    }
-
-    @Override
-    public double getWidth() {
-        return 0;
-    }
-
-    @Override
-    public double getHeight() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public void setFrame(double v, double v1, double v2, double v3) {
-        ellipse2D.setFrame(v, v1, v2, v3);
+    public Rectangle getBounds() {
+        return null;
     }
 
     @Override
@@ -88,7 +61,17 @@ public class MovingCircle extends AbstractFigure {
     }
 
     @Override
+    public boolean contains(Point2D point2D) {
+        return false;
+    }
+
+    @Override
     public boolean intersects(double v, double v1, double v2, double v3) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Rectangle2D rectangle2D) {
         return false;
     }
 
@@ -98,7 +81,17 @@ public class MovingCircle extends AbstractFigure {
     }
 
     @Override
+    public boolean contains(Rectangle2D rectangle2D) {
+        return false;
+    }
+
+    @Override
     public PathIterator getPathIterator(AffineTransform affineTransform) {
         return ellipse2D.getPathIterator(affineTransform);
+    }
+
+    @Override
+    public PathIterator getPathIterator(AffineTransform affineTransform, double v) {
+        return ellipse2D.getPathIterator(affineTransform, v);
     }
 }
