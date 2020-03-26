@@ -1,7 +1,7 @@
-package lab4.controller;
+package lab4.mvc.controller;
 
-import lab4.model.PowerFunction;
-import lab4.view.FunctionWindow;
+import lab4.mvc.model.PowerFunction;
+import lab4.mvc.view.FunctionWindow;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.data.xy.XYDataset;
@@ -12,7 +12,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

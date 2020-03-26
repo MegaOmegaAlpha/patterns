@@ -45,14 +45,6 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
         } else {
             throw new DuplicateModelNameException(newName);
         }
-        /*int index = getModelIndexByName(oldName);
-        if (index != -1) {
-            if (getModelIndexByName(name) == -1) {
-                models[index].name = name;
-            } else {
-                throw new DuplicateModelNameException();
-            }
-        }*/
     }
 
     public String[] getModelNames() {
@@ -213,7 +205,6 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
     public static final class Memento {
 
         private ByteArrayOutputStream byteArrayOutputStream;
-        private ByteArrayInputStream byteArrayInputStream;
 
         public Memento() {
             this.byteArrayOutputStream = new ByteArrayOutputStream();

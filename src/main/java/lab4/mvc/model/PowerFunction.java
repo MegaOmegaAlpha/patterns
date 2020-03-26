@@ -1,4 +1,4 @@
-package lab4.model;
+package lab4.mvc.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

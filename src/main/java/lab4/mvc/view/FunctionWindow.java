@@ -2,18 +2,12 @@
  * Created by JFormDesigner on Thu Mar 26 12:42:07 GMT+04:00 2020
  */
 
-package lab4.view;
+package lab4.mvc.view;
 
 import javax.swing.table.*;
 
-import lab4.controller.Controller;
-import lab4.model.PowerFunction;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import lab4.mvc.controller.Controller;
+import lab4.mvc.model.PowerFunction;
 
 import java.awt.*;
 import javax.swing.*;
