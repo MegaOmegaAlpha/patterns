@@ -43,7 +43,7 @@ public class Motorcycle implements Vehicle, Cloneable {
         this.mark = mark;
         while (size < modelCapacity) {
             try {
-                addModel("Car model " + size, size + 1);
+                addModel("Motorcycle model " + size, size + 1);
             } catch (DuplicateModelNameException e) {
                 e.printStackTrace();
             }
@@ -70,18 +70,6 @@ public class Motorcycle implements Vehicle, Cloneable {
         } else {
             throw new DuplicateModelNameException(newName);
         }
-        /*
-        if (0 <= index && index < size) {
-            Model model = getModelByName(name);
-            if (model == null) {
-                model = getModelByIndex(index);
-                model.name = name;
-            } else {
-                throw new DuplicateModelNameException();
-            }
-        }
-
-         */
     }
 
     @Override
@@ -191,21 +179,6 @@ public class Motorcycle implements Vehicle, Cloneable {
         clone.head.prev = currentModelToClone;
 
         return clone;
-
-        /*Motorcycle clone = null;
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-             ObjectOutput objectOutput = new ObjectOutputStream(byteArrayOutputStream);
-             ObjectInput objectInput = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()))) {
-
-            objectOutput.writeObject(this);
-            clone = (Motorcycle) objectInput.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return clone;
-
-         */
     }
 
     private Model getModelByName(String name) {
