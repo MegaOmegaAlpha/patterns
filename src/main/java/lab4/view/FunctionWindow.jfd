@@ -1,0 +1,110 @@
+JFDML JFormDesigner: "7.0.1.0.272" Java: "11.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, par l {comp scrollPane1::l::0:x, seq {par l {seq l {comp buttonAdd:::p:74:p, space :::p, comp buttonRemove:::p:74:p}, comp buttonUpdate::l:p:154:p}, space :0:0:x}}, space :::p, comp panel1:::p:784:p, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :::p, par t {comp panel1:::::x, seq {comp scrollPane1::::439:x, space :::p, par b {comp buttonAdd::b:p::p, comp buttonRemove::b:p::p}, space :::p, comp buttonUpdate:::p::p}}, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "panel1"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( "-10" )
+						} )
+						add( new java.util.Vector {
+							add( "-9 " )
+						} )
+						add( new java.util.Vector {
+							add( "-8" )
+						} )
+						add( new java.util.Vector {
+							add( "-7" )
+						} )
+						add( new java.util.Vector {
+							add( "-6" )
+						} )
+						add( new java.util.Vector {
+							add( "-5" )
+						} )
+						add( new java.util.Vector {
+							add( "-4" )
+						} )
+						add( new java.util.Vector {
+							add( "-3" )
+						} )
+						add( new java.util.Vector {
+							add( "-2" )
+						} )
+						add( new java.util.Vector {
+							add( "-1" )
+						} )
+						add( new java.util.Vector {
+							add( "0" )
+						} )
+						add( new java.util.Vector {
+							add( "1" )
+						} )
+						add( new java.util.Vector {
+							add( "2" )
+						} )
+						add( new java.util.Vector {
+							add( "3" )
+						} )
+						add( new java.util.Vector {
+							add( "4" )
+						} )
+						add( new java.util.Vector {
+							add( "5" )
+						} )
+						add( new java.util.Vector {
+							add( "6" )
+						} )
+						add( new java.util.Vector {
+							add( "7" )
+						} )
+						add( new java.util.Vector {
+							add( "8" )
+						} )
+						add( new java.util.Vector {
+							add( "9" )
+						} )
+						add( new java.util.Vector {
+							add( "10" )
+						} )
+					}, new java.util.Vector {
+						add( "X values" )
+					}, new java.util.Vector {
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+					}, new java.util.Vector {
+						add( null )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonAdd"
+				"text": "+"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonRemove"
+				"text": "-"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonUpdate"
+				"text": "Update"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 0 )
+			"size": new java.awt.Dimension( 775, 550 )
+		} )
+	}
+}
