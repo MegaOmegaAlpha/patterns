@@ -2,18 +2,9 @@ package lab4.mvc.controller;
 
 import lab4.mvc.model.PowerFunction;
 import lab4.mvc.view.FunctionWindow;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Controller {
 
@@ -24,7 +15,7 @@ public class Controller {
         this.function = function;
         this.window = window;
         initListeners();
-        draw();
+        updateChart();
         this.window.setVisible(true);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -49,38 +40,11 @@ public class Controller {
     }
 
     private void updateChart() {
-        draw();
-    }
-
-    private void draw() {
         try {
-            JPanel panel = window.getPanel1();
-            panel.removeAll();
-            panel.updateUI();
-            panel.add(createNewChart(scanForChangedValues()));
+            window.drawChart(function.getXYSeries(window.scanForXValues()));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(window, "Invalid number detected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private List<Double> scanForChangedValues() throws NumberFormatException {
-        List<Double> values = new ArrayList<>();
-        TableModel model = window.getTable1().getModel();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            values.add(Double.parseDouble((String) model.getValueAt(i, 0)));
-        }
-        return values;
-    }
-
-    private ChartPanel createNewChart(List<Double> values) {
-        XYSeries series = new XYSeries("", false);
-        for (double value : values) {
-            series.add(value, function.calculateValueY(value));
-        }
-        XYDataset dataset = new XYSeriesCollection(series);
-        return new ChartPanel(ChartFactory.createXYLineChart(
-                "power function", "x", "y", dataset
-        ));
     }
 
 }

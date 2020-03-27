@@ -1,5 +1,7 @@
 package lab4.mvc.model;
 
+import org.jfree.data.xy.XYSeries;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +35,14 @@ public class PowerFunction {
 
     public double calculateValueY(double x) {
         return Math.pow(x, PREFERABLE_NUMBER_DEGREE);
+    }
+
+    public XYSeries getXYSeries(List<Double> xValues) {
+        XYSeries series = new XYSeries("", false);
+        for (double value : xValues) {
+            series.add(value, calculateValueY(value));
+        }
+        return series;
     }
 
 }

@@ -8,8 +8,15 @@ import javax.swing.table.*;
 
 import lab4.mvc.controller.Controller;
 import lab4.mvc.model.PowerFunction;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -22,6 +29,28 @@ public class FunctionWindow extends JFrame {
         FunctionWindow window = new FunctionWindow();
         PowerFunction function = new PowerFunction();
         Controller controller = new Controller(function, window);
+    }
+
+    public List<Double> scanForXValues() throws NumberFormatException {
+        List<Double> values = new ArrayList<>();
+        TableModel model = getTable1().getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            values.add(Double.parseDouble((String) model.getValueAt(i, 0)));
+        }
+        return values;
+    }
+
+    public void drawChart(XYSeries series) {
+        panel1.removeAll();
+        panel1.updateUI();
+        panel1.add(createNewXYChart(series));
+    }
+
+    private ChartPanel createNewXYChart(XYSeries series) {
+        XYDataset dataset = new XYSeriesCollection(series);
+        return new ChartPanel(ChartFactory.createXYLineChart(
+                "power function", "x", "y", dataset
+        ));
     }
 
     public FunctionWindow() {
