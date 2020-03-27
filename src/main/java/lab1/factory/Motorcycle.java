@@ -6,9 +6,11 @@ import lab1.factory.exceptions.NoSuchModelNameException;
 import lab1.factory.interfaces.Vehicle;
 import lab3.visitor.Visitor;
 
-public class Motorcycle implements Vehicle, Cloneable {
+import java.io.Serializable;
 
-    private class Model implements Cloneable{
+public class Motorcycle implements Vehicle, Cloneable, Serializable {
+
+    private class Model implements Cloneable, Serializable {
 
         String name;
         double price;

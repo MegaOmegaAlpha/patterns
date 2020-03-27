@@ -202,7 +202,7 @@ public class Car implements Vehicle, Cloneable, Iterable<Car.Model>, Serializabl
         return memento;
     }
 
-    public static final class Memento {
+    public static final class Memento implements Serializable {
 
         private ByteArrayOutputStream byteArrayOutputStream;
 

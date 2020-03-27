@@ -28,7 +28,7 @@ public class Main {
          */
 
 
-        Vehicle vehicle = new Car("Some car", 5);
+        Vehicle vehicle = new Motorcycle("Some car", 5);
         VehicleDao vehicleDao = new VehicleSerializer(new File("daoSerializer.txt"));
         vehicleDao.writeVehicle(vehicle);
 
