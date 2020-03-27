@@ -25,6 +25,8 @@ public class Controller {
         this.window = window;
         initListeners();
         draw();
+        this.window.setVisible(true);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void initListeners() {
@@ -47,18 +49,21 @@ public class Controller {
     }
 
     private void updateChart() {
-        scanForChangedValues();
         draw();
     }
 
     private void draw() {
-        JPanel panel = window.getPanel1();
-        panel.removeAll();
-        panel.updateUI();
-        panel.add(createNewChart(scanForChangedValues()));
+        try {
+            JPanel panel = window.getPanel1();
+            panel.removeAll();
+            panel.updateUI();
+            panel.add(createNewChart(scanForChangedValues()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(window, "Invalid number detected", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    private List<Double> scanForChangedValues() {
+    private List<Double> scanForChangedValues() throws NumberFormatException {
         List<Double> values = new ArrayList<>();
         TableModel model = window.getTable1().getModel();
         for (int i = 0; i < model.getRowCount(); i++) {
